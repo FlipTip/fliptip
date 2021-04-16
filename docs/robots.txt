@@ -1,0 +1,127 @@
+# Bitte beachten Sie: Es gibt viele Seiten auf dieser Website, und es gibt
+# Einige schlecht benommene Spinnen da draußen, die zu schnell gehen. Wenn du bist
+# unverantwortlich, Ihr Zugriff auf die Website kann blockiert sein.
+#
+
+# Beobachtetes Spammen großer Mengen von https://en.wikipedia.org/?curid=NNNNNN
+# und Ignorieren von 429 Ratelimit-Antworten, behauptet, Roboter zu respektieren:
+# http://mj12bot.com/
+Benutzeragent: MJ12bot
+Nicht zulassen: /
+
+# werbebezogene Bots:
+User-Agent: Mediapartners-Google *
+Nicht zulassen: /
+
+# Wikipedia Work Bots:
+Benutzeragent: IsraBot
+Nicht zulassen:
+
+User-Agent: Orthogaffe
+Nicht zulassen:
+
+# Crawler, die so freundlich sind, zu gehorchen, die wir aber lieber nicht haben möchten
+# es sei denn, sie füttern Suchmaschinen.
+Benutzeragent: UbiCrawler
+Nicht zulassen: /
+
+Benutzeragent: DOC
+Nicht zulassen: /
+
+User-Agent: Zao
+Nicht zulassen: /
+
+# Einige Bots sind bekanntermaßen problematisch, insbesondere solche, die zum Kopieren entwickelt wurden
+# ganze Websites. Bitte gehorche robots.txt.
+Benutzeragent: sitecheck.internetseer.com
+Nicht zulassen: /
+
+User-Agent: Zealbot
+Nicht zulassen: /
+
+Benutzeragent: MSIECrawler
+Nicht zulassen: /
+
+Benutzeragent: SiteSnagger
+Nicht zulassen: /
+
+Benutzeragent: WebStripper
+Nicht zulassen: /
+
+Benutzeragent: WebCopier
+Nicht zulassen: /
+
+User-Agent: Abrufen
+Nicht zulassen: /
+
+Benutzeragent: Offline-Explorer
+Nicht zulassen: /
+
+User-Agent: Teleportieren
+Nicht zulassen: /
+
+Benutzeragent: TeleportPro
+Nicht zulassen: /
+
+Benutzeragent: WebZIP
+Nicht zulassen: /
+
+User-Agent: Linko
+Nicht zulassen: /
+
+Benutzeragent: HTTrack
+Nicht zulassen: /
+
+Benutzeragent: Microsoft.URL.Control
+Nicht zulassen: /
+
+Benutzeragent: Xenu
+Nicht zulassen: /
+
+User-Agent: Larbin
+Nicht zulassen: /
+
+Benutzeragent: libwww
+Nicht zulassen: /
+
+User-Agent: ZyBORG
+Nicht zulassen: /
+
+User-Agent: Laden Sie Ninja herunter
+Nicht zulassen: /
+
+# Fehlverhalten: Anfragen viel zu schnell:
+User-Agent: schnell
+Nicht zulassen: /
+
+#
+# Entschuldigung, wget im rekursiven Modus ist ein häufiges Problem.
+# Bitte lesen Sie die Manpage und verwenden Sie sie ordnungsgemäß. da ist ein
+# --wait Option, mit der Sie die Verzögerung zwischen Treffern einstellen können,
+# beispielsweise.
+#
+User-Agent: wget
+Nicht zulassen: /
+
+#
+# Der verteilte 'grub'-Client hat sich * sehr * schlecht benommen.
+#
+User-Agent: Grub-Client
+Nicht zulassen: /
+
+#
+# Folgt robots.txt sowieso nicht, aber ...
+#
+User-Agent: k2spider
+Nicht zulassen: /
+
+#
+# Treffer mehrmals pro Sekunde, nicht akzeptabel
+# http://www.nameprotect.com/botinfo.html
+User-Agent: NPBot
+Nicht zulassen: /
+
+# Ein Capture-Bot, der Unmengen von Seiten ohne öffentlichen Nutzen herunterlädt
+# http://www.webreaper.net/
+Benutzeragent: WebReaper
+Nicht zulassen: /
