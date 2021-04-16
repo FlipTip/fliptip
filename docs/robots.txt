@@ -1,127 +1,129 @@
-# Bitte beachten Sie: Es gibt viele Seiten auf dieser Website, und es gibt
-# Einige schlecht benommene Spinnen da draußen, die zu schnell gehen. Wenn du bist
-# unverantwortlich, Ihr Zugriff auf die Website kann blockiert sein.
+# robots.txt for http://www.wikipedia.org/ and friends
+#
+# Please note: There are a lot of pages on this site, and there are
+# some misbehaved spiders out there that go _way_ too fast. If you're
+# irresponsible, your access to the site may be blocked.
 #
 
-# Beobachtetes Spammen großer Mengen von https://en.wikipedia.org/?curid=NNNNNN
-# und Ignorieren von 429 Ratelimit-Antworten, behauptet, Roboter zu respektieren:
+# Observed spamming large amounts of https://en.wikipedia.org/?curid=NNNNNN
+# and ignoring 429 ratelimit responses, claims to respect robots:
 # http://mj12bot.com/
-Benutzeragent: MJ12bot
-Nicht zulassen: /
+User-agent: MJ12bot
+Disallow: /
 
-# werbebezogene Bots:
-User-Agent: Mediapartners-Google *
-Nicht zulassen: /
+# advertising-related bots:
+User-agent: Mediapartners-Google*
+Disallow: /
 
-# Wikipedia Work Bots:
-Benutzeragent: IsraBot
-Nicht zulassen:
+# Wikipedia work bots:
+User-agent: IsraBot
+Disallow:
 
-User-Agent: Orthogaffe
-Nicht zulassen:
+User-agent: Orthogaffe
+Disallow:
 
-# Crawler, die so freundlich sind, zu gehorchen, die wir aber lieber nicht haben möchten
-# es sei denn, sie füttern Suchmaschinen.
-Benutzeragent: UbiCrawler
-Nicht zulassen: /
+# Crawlers that are kind enough to obey, but which we'd rather not have
+# unless they're feeding search engines.
+User-agent: UbiCrawler
+Disallow: /
 
-Benutzeragent: DOC
-Nicht zulassen: /
+User-agent: DOC
+Disallow: /
 
-User-Agent: Zao
-Nicht zulassen: /
+User-agent: Zao
+Disallow: /
 
-# Einige Bots sind bekanntermaßen problematisch, insbesondere solche, die zum Kopieren entwickelt wurden
-# ganze Websites. Bitte gehorche robots.txt.
-Benutzeragent: sitecheck.internetseer.com
-Nicht zulassen: /
+# Some bots are known to be trouble, particularly those designed to copy
+# entire sites. Please obey robots.txt.
+User-agent: sitecheck.internetseer.com
+Disallow: /
 
-User-Agent: Zealbot
-Nicht zulassen: /
+User-agent: Zealbot
+Disallow: /
 
-Benutzeragent: MSIECrawler
-Nicht zulassen: /
+User-agent: MSIECrawler
+Disallow: /
 
-Benutzeragent: SiteSnagger
-Nicht zulassen: /
+User-agent: SiteSnagger
+Disallow: /
 
-Benutzeragent: WebStripper
-Nicht zulassen: /
+User-agent: WebStripper
+Disallow: /
 
-Benutzeragent: WebCopier
-Nicht zulassen: /
+User-agent: WebCopier
+Disallow: /
 
-User-Agent: Abrufen
-Nicht zulassen: /
+User-agent: Fetch
+Disallow: /
 
-Benutzeragent: Offline-Explorer
-Nicht zulassen: /
+User-agent: Offline Explorer
+Disallow: /
 
-User-Agent: Teleportieren
-Nicht zulassen: /
+User-agent: Teleport
+Disallow: /
 
-Benutzeragent: TeleportPro
-Nicht zulassen: /
+User-agent: TeleportPro
+Disallow: /
 
-Benutzeragent: WebZIP
-Nicht zulassen: /
+User-agent: WebZIP
+Disallow: /
 
-User-Agent: Linko
-Nicht zulassen: /
+User-agent: linko
+Disallow: /
 
-Benutzeragent: HTTrack
-Nicht zulassen: /
+User-agent: HTTrack
+Disallow: /
 
-Benutzeragent: Microsoft.URL.Control
-Nicht zulassen: /
+User-agent: Microsoft.URL.Control
+Disallow: /
 
-Benutzeragent: Xenu
-Nicht zulassen: /
+User-agent: Xenu
+Disallow: /
 
-User-Agent: Larbin
-Nicht zulassen: /
+User-agent: larbin
+Disallow: /
 
-Benutzeragent: libwww
-Nicht zulassen: /
+User-agent: libwww
+Disallow: /
 
-User-Agent: ZyBORG
-Nicht zulassen: /
+User-agent: ZyBORG
+Disallow: /
 
-User-Agent: Laden Sie Ninja herunter
-Nicht zulassen: /
+User-agent: Download Ninja
+Disallow: /
 
-# Fehlverhalten: Anfragen viel zu schnell:
-User-Agent: schnell
-Nicht zulassen: /
-
-#
-# Entschuldigung, wget im rekursiven Modus ist ein häufiges Problem.
-# Bitte lesen Sie die Manpage und verwenden Sie sie ordnungsgemäß. da ist ein
-# --wait Option, mit der Sie die Verzögerung zwischen Treffern einstellen können,
-# beispielsweise.
-#
-User-Agent: wget
-Nicht zulassen: /
+# Misbehaving: requests much too fast:
+User-agent: fast
+Disallow: /
 
 #
-# Der verteilte 'grub'-Client hat sich * sehr * schlecht benommen.
+# Sorry, wget in its recursive mode is a frequent problem.
+# Please read the man page and use it properly; there is a
+# --wait option you can use to set the delay between hits,
+# for instance.
 #
-User-Agent: Grub-Client
-Nicht zulassen: /
+User-agent: wget
+Disallow: /
 
 #
-# Folgt robots.txt sowieso nicht, aber ...
+# The 'grub' distributed client has been *very* poorly behaved.
 #
-User-Agent: k2spider
-Nicht zulassen: /
+User-agent: grub-client
+Disallow: /
 
 #
-# Treffer mehrmals pro Sekunde, nicht akzeptabel
+# Doesn't follow robots.txt anyway, but...
+#
+User-agent: k2spider
+Disallow: /
+
+#
+# Hits many times per second, not acceptable
 # http://www.nameprotect.com/botinfo.html
-User-Agent: NPBot
-Nicht zulassen: /
+User-agent: NPBot
+Disallow: /
 
-# Ein Capture-Bot, der Unmengen von Seiten ohne öffentlichen Nutzen herunterlädt
+# A capture bot, downloads gazillions of pages with no public benefit
 # http://www.webreaper.net/
-Benutzeragent: WebReaper
-Nicht zulassen: /
+User-agent: WebReaper
+Disallow: /
