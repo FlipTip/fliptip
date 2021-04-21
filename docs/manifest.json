@@ -1,16 +1,36 @@
 {
   "short_name": "FlipTip",
   "name": "Fliptip by Heinrich",
-  "icons": [
+ "icons": [
     {
-      "src": "https://live.staticflickr.com/3275/2647675338_2fc93ff3a1.jpg",
-      "type": "image/jpg",
-      "sizes": "192x192"
+      "src": "https://via.placeholder.com/48",
+      "sizes": "48x48",
+      "type": "image/png"
     },
     {
-      "src": "https://images.vexels.com/media/users/3/142662/isolated/preview/147faa70f705783a00dc8d23d64afcb0-f-letter-origami-isotype-by-vexels.png",
-      "type": "image/jpg",
-      "sizes": "512x512"
+      "src": "https://via.placeholder.com/72",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/96",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/144",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
   "start_url": "https://fliptip.github.io/fliptip",
