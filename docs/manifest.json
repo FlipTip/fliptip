@@ -1,7 +1,8 @@
 {
-  "short_name": "FlipTip",
-  "name": "Fliptip by Heinrich",
- "icons": [
+  "short_name": "Weather",
+  "name": "Weather - Do I need an umbrella?",
+  "description": "Weather forecast information",
+  "icons": [
     {
       "src": "https://via.placeholder.com/48",
       "sizes": "48x48",
@@ -35,8 +36,7 @@
   ],
   "start_url": "/",
   "background_color": "#3367D6",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/",
-  "theme_color": "#3367D6",
-  "description": "Fliptip Beschreibung"
+  "theme_color": "#3367D6"
 }
