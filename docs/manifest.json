@@ -1,57 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="1404.47">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-  </style>
-</head>
-<body>
-<p class="p1">{</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"short_name": "Weather",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"name": "Weather - Do I need an umbrella?",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"description": "Weather forecast information",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"icons": [</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"src": "https://via.placeholder.com/48",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"sizes": "48x48",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"type": "image/png"</p>
-<p class="p1"><span class="Apple-converted-space">    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"src": "https://via.placeholder.com/72",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"sizes": "72x72",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"type": "image/png"</p>
-<p class="p1"><span class="Apple-converted-space">    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"src": "https://via.placeholder.com/96",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"sizes": "96x96",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"type": "image/png"</p>
-<p class="p1"><span class="Apple-converted-space">    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"src": "https://via.placeholder.com/144",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"sizes": "144x144",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"type": "image/png"</p>
-<p class="p1"><span class="Apple-converted-space">    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"src": "https://via.placeholder.com/192",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"sizes": "192x192",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"type": "image/png"</p>
-<p class="p1"><span class="Apple-converted-space">    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"src": "https://via.placeholder.com/512",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"sizes": "512x512",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"type": "image/png"</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"start_url": "/",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"background_color": "#3367D6",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"display": "standalone",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"scope": "/",</p>
-<p class="p1"><span class="Apple-converted-space">  </span>"theme_color": "#3367D6"</p>
-<p class="p1">}</p>
-</body>
-</html>
+{
+  "short_name": "Weather",
+  "name": "Weather - Do I need an umbrella?",
+  "description": "Weather forecast information",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/48",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/72",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/96",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/144",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3367D6"
+}
