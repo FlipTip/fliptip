@@ -1,626 +1,510 @@
-<html>
-  <head>
-    <style>
-      html{
-  height: 100%;
-}
+<html><head>
+	<title>Frickl - SELFHTML-Wiki</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css" media="screen">
+// ----- Personal preference -----
+		*,
+		*:before,
+		*:after {
+			box-sizing: border-box;
+			-webkit-font-smoothing: antialiased;
+		}
+		
+		// ----- Variable Declarations -----
+		@keyframes spin {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+		
+		$color: #4FB6EC;
+		// ----- Styles -----
+		body {
+			background-color: rgba(#222, 0.1);
+			font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+			font-weight: 300;
+			line-height: 1.5em;
+		}
+		
+		.table {
+			display: table;
+			width: 100%;
+			height: 100vh;
+		}
+		
+		.table-cell {
+			display: table-cell;
+			vertical-align: middle;
+		}
+		
+		#playbar {
+			visibility: hidden;
+			height: 0;
+			width: 0;
+		}
+		
+		#player {
+			margin: 0 auto;
+			position: relative;
+			width: 400px;
+			height: 400px;
+			#main {
+				width: 400px;
+				height: 400px;
+				overflow: hidden;
+				border-radius: 5px;
+				user-select: none;
+				box-shadow: 0 10px 60px rgba(black, 0.6);
+				background-image: url('https://d13yacurqjgara.cloudfront.net/users/358029/screenshots/2147223/perigee-album-art-v2-dribbble.gif');
+				background-size: cover;
+				background-position: center center;
+				background-repeat: no-repeat;
+				z-index: 2;
+				position: relative;
+				transition: transform 0.4s ease-in-out;
+			}
+			&.show #main {
+				transform: translateX(-200px);
+			}
+			&.show ol {
+				transform: translateX(200px);
+				box-shadow: 1px 2px 10px rgba(black, 0.3);
+				transition: transform 0.4s ease-in-out, 0s box-shadow 0.05s;
+			}
+			.playback_controls {
+				opacity: 0;
+				color: rgba(black, 0.55);
+				font-size: 22px;
+				transform: translateY(10px);
+				transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+				//height: 100px;
+				padding: 20px;
+				width: 100%;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				background: rgba(#fff, 0.95);
+				z-index: 1;
+				.buttons {
+					text-align: center;
+					padding-left: 15px;
+					i {
+						display: inline-block;
+						padding: 0 15px;
+						width: 48px;
+						text-align: center;
+						cursor: pointer;
+						&#playpause.loading {
+							opacity: 0.4;
+							position: relative;
+							&:after {
+								position: absolute;
+								content: '';
+								display: block;
+								width: 50px;
+								height: 50px;
+								top: 50%;
+								margin-top: -25px;
+								margin-left: -28px;
+								left: 50%;
+								border: 3px solid #ddd;
+								border-radius: 100%;
+								border-right: 3px solid $color;
+								animation-duration: 0.5s;
+								animation-name: spin;
+								animation-iteration-count: infinite;
+								animation-timing-function: linear;
+							}
+						}
+					}
+				}
+				.menu {
+					float: right;
+					cursor: pointer;
+					opacity: 0.2;
+					transition: opacity 0.2s;
+					&:hover {
+						opacity: 0.6;
+					}
+				}
+			}
+		}
+		
+		#main:hover .playback_controls,
+		.show #main .playback_controls {
+			opacity: 1;
+			transform: translateY(0px);
+		}
+		
+		h2 {
+			font-weight: 300;
+			font-size: 16px;
+			text-align: center;
+			margin: 0 0 10px 0;
+		}
+		
+		h3 {
+			font-weight: 700;
+			font-size: 12px;
+			text-align: center;
+			margin: 0;
+		}
+		
+		.time-holder {
+			padding: 0 40px;
+			padding-bottom: 10px;
+			.slider {
+				width: 100%;
+				height: 50px;
+				position: relative;
+				&:before {
+					position: absolute;
+					top: 50%;
+					margin-top: -2px;
+					left: 0;
+					content: '';
+					display: block;
+					width: 100%;
+					height: 3px;
+					background-color: rgba(#222, 0.075);
+				}
+				.fill {
+					position: absolute;
+					top: 50%;
+					width: 100%;
+					transform-origin: 0% 0%;
+					transform: scaleX(0);
+					margin-top: -2px;
+					left: 0;
+					content: '';
+					display: block;
+					height: 3px;
+					background-color: $color;
+					transition: transform 1s;
+				}
+			}
+		}
+		
+		a {
+			color: rgba(0, 0, 0, 0.55);
+			text-decoration: none;
+		}
+		
+		.time {
+			font-size: 12px;
+			font-weight: bold;
+			opacity: 0.3;
+			float: right;
+		}
+		
+		ol#playlist {
+			list-style-type: none;
+			margin-left: 0;
+			width: 400px;
+			padding-left: 0;
+			position: absolute;
+			height: 300px;
+			background-color: #fff;
+			margin: 0;
+			font-size: 16px;
+			top: 50px;
+			overflow-y: auto;
+			transition: transform 0.4s ease-in-out, 0s box-shadow 0.3s;
+			border-radius: 0 5px 5px 0;
+			a {
+				display: inline-block;
+				width: 300px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+		
+		ol#playlist > li {
+			counter-increment: customlistcounter;
+			padding: 12px 15px;
+			height: 50px;
+			position: relative;
+			&:after {
+				position: absolute;
+				width: 300px;
+				left: 9.5%;
+				content: '';
+				display: block;
+				bottom: 0;
+				border-bottom: 1px solid rgba(#222, 0.1);
+			}
+			&:last-child:after {
+				border-color: transparent;
+			}
+			&:hover {
+				background-color: rgba(#222, 0.02);
+			}
+			&.playing {
+				background-color: rgba($color, 0.15);
+				&:after {
+					border-color: transparent;
+				}
+				&:hover {
+					background-color: rgba($color, 0.2);
+				}
+			}
+		}
+		
+		ol#playlist > li:before {
+			content: counter(customlistcounter) " ";
+			float: left;
+			text-align: right;
+			width: 1em;
+			margin-right: 1em;
+			font-size: 12px;
+			font-weight: bold;
+			opacity: 0.3;
+			vertical-align: baseline;
+			display: inline-block;
+		}
+		
+		ol#playlist li:first-child {
+			counter-reset: customlistcounter;
+		}
+		
+		// ----- Mobile styles -----
+		@media only screen and (max-device-width: 736px) {}
 
-body{
-  background: rgb(79,142,165);
-	background: -moz-radial-gradient(center, ellipse cover,  rgba(79,142,165,1) 0%, rgba(52,63,83,1) 50%, rgba(28,27,38,1) 100%);
-	background: -webkit-radial-gradient(center, ellipse cover,  rgba(79,142,165,1) 0%,rgba(52,63,83,1) 50%,rgba(28,27,38,1) 100%);
-	background: radial-gradient(ellipse at center,  rgba(79,142,165,1) 0%,rgba(52,63,83,1) 50%,rgba(28,27,38,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f8ea5', endColorstr='#1c1b26',GradientType=1 );
-  font-family: "proxima-nova";
-}
+	</style>
+	<script type="text/javascript">
+		//<![CDATA[
+		var tracks = []
+		var audio;
+		var audioPreload;
+		var preloaded = false;
 
-.clear{
-  &:before,
-  &:after{
-    content: "";
-    display: table;
-  }
-  
-  &:after{
-    clear: both;
-  }
-}
+		function playTrack(e) {
+			e.preventDefault();
+			var track = e.target.href;
+			audio.src = track;
+			$('#playlist li')
+				.removeClass('playing');
+			$(e.target)
+				.parent()
+				.addClass('playing');
+			$(audio)
+				.on('canplay', function () {
+					play();
+				})
+			preloaded = false;
+		}
 
-@keyframes opacityAni{
-  0%{
-    opacity: 0;
-  }
-  100%{
-    opacity: 1;
-  }
-}
+		function queueAudio() {
+			audioPreload = document.createElement('audio');
+			audioPreload.controls = true;
+			var track = tracks.indexOf(audio.src) + 1;
+			if (tracks.length >= track) {
+				audioPreload.src = tracks[track];
+			}
+			audioPreload.id = 'playbar';
+		}
 
-.phone{
-  animation: opacityAni 400ms linear 1s forwards;
-  background: rgb(30,30,40);
-  background: -moz-linear-gradient(top,  rgba(30,30,40,1) 0%, rgba(30,46,71,1) 34%, rgba(49,189,247,1) 88%, rgba(232,254,254,1) 100%);
-  background: -webkit-linear-gradient(top,  rgba(30,30,40,1) 0%,rgba(30,46,71,1) 34%,rgba(49,189,247,1) 88%,rgba(232,254,254,1) 100%);
-  background: linear-gradient(to bottom,  rgba(30,30,40,1) 0%,rgba(30,46,71,1) 34%,rgba(49,189,247,1) 88%,rgba(232,254,254,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e1e28', endColorstr='#e8fefe',GradientType=0 );
-  border-radius: 3px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.4);
-  height: 500px;
-  left: 50%;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  transform: translate(-50%,-50%);
-  top: 50%;
-  width: 320px;
-}
+		function newSong() {
+			if (preloaded) {
+				var parentEl = audio.parentNode;
+				var newTrack = tracks.indexOf(audioPreload.src);
+				$('#playlist li')
+					.removeClass('playing');
+				$($('#playlist')
+						.children()[newTrack])
+					.addClass('playing');
+				parentEl.replaceChild(audioPreload, audio);
+				audio = audioPreload;
+				play();
+				audio.addEventListener('timeupdate', audioUpdate, false);
+				audio.addEventListener('ended', newSong, false);
+				preloaded = false;
+			} else {
+				var track = tracks.indexOf(audio.src) + 1;
+				$('#playlist li')
+					.removeClass('playing');
+				$($('#playlist')
+						.children()[track])
+					.addClass('playing');
+				audio.src = tracks[track];
+			}
+		}
 
-.wavesurfer{
-  box-sizing: border-box;
-  cursor: pointer;
-  height: 275px;
-  margin-bottom: 30px;
-  overflow: hidden;
-  padding-top: 60px;
-  pointer-events: none;
-  position: relative;
-  width: 100%;
-  z-index: 1;
-}
+		function audioUpdate() {
+				var duration = parseInt(audio.duration),
+					currentTime = parseInt(audio.currentTime),
+					timeLeft = duration - currentTime;
+				progress = (audio.currentTime + 1) / duration;
+				if (timeLeft <= 10 && !preloaded) {
+					preloaded = true;
+					queueAudio();
+				}
+				TweenMax.set($('.fill'), {
+					scaleX: progress
+				})
+			}
+			// ------- ON LOAD ---------
+		$(function () {
+			FastClick.attach(document.body);
+			audio = document.getElementById('playbar');
+			audio.addEventListener('timeupdate', audioUpdate, false);
+			audio.addEventListener('ended', newSong, false);
+			var trackElements = document.getElementsByClassName('track');
+			var i;
+			for (i = 0; i < trackElements.length; i++) {
+				trackElements[i].addEventListener('click', function (e) {
+					playTrack(e);
+				}, false);
+				tracks.push(trackElements[i].href);
+			}
+			audio.src = tracks[0];
+			$(audio)
+				.on('canplay', function () {
+					play();
+					//$($('#playlist').children()[0]).addClass('playing');
+				});
+		});
+		var pause = function () {
+			audio.pause();
+			$('#playpause')
+				.addClass('fa-play')
+				.removeClass('fa-pause');
+		}
+		var play = function () {
+			audio.play();
+			$('#playpause')
+				.removeClass('fa-play')
+				.addClass('fa-pause')
+				.removeClass('loading');
+			var index = tracks.indexOf(audio.src);
+			$('#title')
+				.text($($('#playlist a')[index])
+					.text());
+		}
+		$('#playpause')
+			.click(function () {
+				if (audio.src) {
+					if (audio.paused) {
+						play();
+					} else {
+						pause();
+					}
+				} else {
+					audio.src = tracks[0];
+					$(audio)
+						.on('canplay', function () {
+							play();
+						});
+				}
+			})
+		$('#next')
+			.click(function () {
+				var track = tracks.indexOf(audio.src);
+				if (track == -1) {
+					// WAT
+				} else if (track >= tracks.length) {
+					audio.src = '';
+				} else {
+					pause();
+					$('#playpause')
+						.addClass('loading');
+					audio.src = tracks[track + 1];
+					$('#playlist li')
+						.removeClass('playing');
+					$($('#playlist')
+							.children()[track + 1])
+						.addClass('playing');
+					$(audio)
+						.on('canplay', function () {
+							play();
+						});
+				}
+			})
+		$('#back')
+			.click(function () {
+				var track = tracks.indexOf(audio.src);
+				if (track == -1) {
+					// WAT
+				} else if (track <= 0 || audio.currentTime > 2) {
+					audio.currentTime = 0;
+				} else {
+					pause();
+					$('#playpause')
+						.addClass('loading');
+					audio.src = tracks[track - 1];
+					$('#playlist li')
+						.removeClass('playing');
+					$($('#playlist')
+							.children()[track - 1])
+						.addClass('playing');
+					$(audio)
+						.on('canplay', function () {
+							play();
+						});
+				}
+			})
+		$('.menu')
+			.click(function () {
+				$('#player')
+					.toggleClass('show');
+			});
+		//]]>
 
-.wavesurfer__elem{
-  height: 500px;
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  transition: opacity 170ms linear;
-  top: 0;
-  width: 100%;
-  z-index: 0;
-  
-  &.show{
-    opacity: 1;
-  }
-}
+	</script>
+</head>
 
-.artist__image{
-  box-shadow: 0 0 0 5px rgba(255,255,255,.1), 0 0 0 10px rgba(255,255,255,.1), 0 0 5px 20px rgba(255,255,255,.05);
-  border-radius: 50%;
-  height: 140px;
-  margin: 0 auto 34px auto;
-  position: relative;
-  transition: all 170ms ease-in;
-  width: 140px;
-  z-index: 2;
-  
-  &.play{
-    box-shadow: 0 0 0 5px rgba(255,255,255,0), 0 0 0 10px rgba(255,255,255,0), 0 0 5px 20px rgba(255,255,255,0);
-  }
-}
+<body>
+	<div class="table">
+		<div class="table-cell">
+			<div id="player">
+				<div id="main">
+					<div>
+						<div class="playback_controls">
+							<h2 id="title">Title</h2>
+							<h3 id="artist">Perigee</h3>
+							<div class="time-holder">
+								<div class="slider">
+									<div class="fill"></div>
+								</div>
+							</div>
+							<div> <i class="fa fa-bars menu"></i>
+								<div class="buttons"> <i class="fa fa-backward" id="back"></i> <i class="fa fa-play loading" id="playpause"></i>									<i class="fa fa-forward" id="next"></i> </div>
+							</div>
+						</div>
+						<audio id="playbar" controls=""></audio>
+					</div>
+				</div>
+				<ol id="playlist">
+					<li class="playing"><a class="track" href="https://dl.dropboxusercontent.com/u/2255413/Perigee/01%20Searching%20%28Memoirs%20Of%20A%20New%20Discovery%29.m4a">Searching (Memoirs Of A New Discovery)</a>						<span class="time">2:54</span>
+					</li>
+					<li><a class="track" href="https://dl.dropboxusercontent.com/u/2255413/Perigee/02%20Charade%20%28Exploring%20The%20Surface%29%20feat.%20Julie%20Thurman.m4a">Charade (Exploring The Surface) feat. Julie Thurman</a>						<span class="time">3:04</span>
+					</li>
+					<li><a class="track" href="https://dl.dropboxusercontent.com/u/2255413/Perigee/03%20Speed%20of%20Sound%20%28An%20Interruption%20In%20Spaceflight%29.m4a">Speed of Sound (An Interruption In Spaceflight)</a>						<span class="time">5:05</span>
+					</li>
+					<li><a class="track" href="https://dl.dropboxusercontent.com/u/2255413/Perigee/04%20Words%20%28Retrograde%29.m4a">Words (Retrograde)</a>						<span class="time">2:56</span>
+					</li>
+					<li><a class="track" href="https://dl.dropboxusercontent.com/u/2255413/Perigee/05%20GO%21%20%28Breaking%20Orbit%29.m4a">GO! (Breaking Orbit)</a>						<span class="time">3:48</span>
+					</li>
+					<li><a class="track" href="https://dl.dropboxusercontent.com/u/2255413/Perigee/06%20Remembering%20%28What%20Went%20Wrong%29.m4a">Remembering (What Went Wrong)</a>						<span class="time">3:28</span>
+					</li>
+					<li><a class="track" href="https://dl.dropboxusercontent.com/u/2255413/Perigee/07%20Loss%20%28The%20Next%20Chapter%29.m4a">Loss (The Next Chapter)</a>						<span class="time">3:28</span>
+					</li>
+					<li><a class="track" href="https://dl.dropboxusercontent.com/u/2255413/Perigee/08%20Stillborn%20Love%20%28Lost%20In%20Space%29.m4a">Stillborn Love (Lost In Space)</a>						<span class="time">2:16</span>
+					</li>
+					<li><a class="track" href="https://dl.dropboxusercontent.com/u/2255413/Perigee/09%20Plans%20%28When%20Upon%20A%20Journey%20And%20One%20Becomes%20Filled%20With%20Wonder%29.m4a">Plans (When Upon A Journey And One Becomes Filled With Wonder)</a>						<span class="time">4:00</span> </li>
+					<li><a class="track" href="https://dl.dropboxusercontent.com/u/2255413/Perigee/10%20A%20Spacewalk%20%28A%20Renewed%20Mind%29.m4a">A Spacewalk (A Renewed Mind)</a>						<span class="time">4:34</span>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
 
-.artist__image-url{
-  background: url('https://archive.org/download/GlennMillerOrchestra-CompleteStudioRecordings/Glenn_Miller_Billboard.jpg') no-repeat left top;
-  background-size: cover;
-  border-radius: 50%;
-  height: 140px;
-  width: 140px;
-}
 
-.time{
-  color: rgba(255,255,255,.7);
-  display: none;
-  font-size: 14px;
-  font-weight: 300;
-  margin: 0 auto;
-  pointer-events: none;
-  text-align: center;
-  width: 63px;
-  
-  @extend .clear;
-  
-  span{
-    display: inline-block;
-    float: left;
-    width: 3px;
-  }
-  
-  .time__minutes,
-  .time__seconds{
-    width: 30px;
-  }
-  
-  .time__minutes{
-    text-align: right;
-  }
-  
-  .time__seconds{
-    text-align: left;
-  }
-}
 
-.progress{
-  background: rgba(255,255,255,.2);
-  bottom: 5px;
-  display: none;
-  height: 5px;
-  left: 0;
-  pointer-events: none;
-  position: absolute;
-  width: 100%;
-}
 
-.progress__button{
-  background-color: #fff;
-  border-radius: 50%;
-  height: 15px;
-  left: 10px;
-  position: absolute;
-  top: -5px;
-  transform: translateX(-50%);
-  width: 15px;
-  z-index: 1;
-}
-
-.progress__indicator{
-  background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 100%);
-  background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.6) 100%);
-  background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.6) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#99ffffff',GradientType=1 );
-  height: 3px;
-  left: 0;
-  position: absolute;
-  top: 1px;
-  width: 10px;
-  z-index: 0;
-}
-
-@keyframes artistNameAni{
-  0%{
-    transform: translateY(40px) scale(.8);
-  }
-  100%{
-    transform: translateY(0) scale(1);
-  }
-}
-
-.artist__name{
-  animation: artistNameAni 400ms linear 1000ms forwards;
-  margin-bottom: 30px;
-  position: relative;
-  text-align: center;
-  transform: translateY(40px) scale(.8);
-  
-  h1{
-    color: rgba(255,255,255,.7);
-    font-size: 16px;
-    font-weight: 100;
-    margin: 0;
-    text-transform: uppercase;
-  }
-  
-  p{
-    color: #fff;
-    font-size: 18px;
-    font-weight: 300;
-    margin: 0 0 5px 0;
-  }
-}
-
-.love{
-  color: rgba(255,255,255,.5);
-  font-size: 18px;
-  left: 30px;
-  position: absolute;
-  top: 10px;
-}
-
-.share{
-  border: 1px solid rgba(255,255,255,.6);
-  border-radius: 50%;
-  height: 5px;
-  position: absolute;
-  right: 35px;
-  top: 20px;
-  width: 5px;
-  
-  &:before,
-  &:after{
-    border: 1px solid rgba(255,255,255,.6);
-    border-radius: 50%;
-    content: "";
-    height: 5px;
-    position: absolute;
-    top: -1px;
-    width: 5px;
-  }
-  
-  &:before{
-    left: -10px;
-  }
-  
-  &:after{
-    right: -10px;
-  }
-}
-
-.controls{
-  text-align: center;
-}
-
-@keyframes buttonAni{
-  0%{
-    transform: translateY(120px);
-  }
-  100%{
-    transform: translateY(0);
-  }
-}
-
-.button__play{
-  animation: buttonAni 300ms cubic-bezier(.48,.18,.44,.97) 1300ms forwards;
-  background-color: rgba(255,255,255,.1);
-  border: 2px solid #fff;
-  border-radius: 50%;
-  cursor: pointer;
-  height: 80px;
-  outline: none;
-  overflow: hidden;
-  position: relative;
-  transform: translateY(120px);
-  width: 80px;  
-}
-
-.button__play-iconplay{
-  border-color: transparent transparent transparent #fff;
-  border-style: solid;
-  border-width: 13px 0 13px 20px;
-  height: 0;
-  left: 31px;
-  position: absolute;
-  top: 25px;
-  width: 0;
-}
-
-.button__play-iconpause{
-  display: none;
-  height: 24px;
-  left: 28px;
-  position: absolute;
-  top: 25px;
-  width: 19px;
-  
-  &:before,
-  &:after{
-    background: #fff;
-    content: "";
-    display: block;
-    height: 24px;
-    position: absolute;
-    top: 0;
-    width: 6px;
-  }
-  
-  &:before{
-    left: 0;
-  }
-  
-  &:after{
-    left: 13px;
-  }
-}
-
-.button__loader{
-  background: rgba(255,255,255,.5);
-  bottom: 0;
-  height: 0;
-  left: 0;
-  position: absolute;
-  width: 100%;
-}
-
-.button__prev,
-.button__next{
-  background: none;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  height: 50px;
-  margin: 0 8px;
-  position: relative;
-  top: 15px;
-  transform: translateY(120px);
-  vertical-align: top;
-  width: 50px;
-  
-  &:before{
-    border-style: solid;
-    content: "";
-    height: 0;
-    position: absolute;
-    top: 16px;
-    width: 0;
-  }
-  
-  &:after{
-    background: #fff;
-    border-radius: 1px;
-    content: "";
-    height: 14px;
-    position: absolute;
-    top: 17px;
-    width: 2px;
-  }
-}
-
-.button__prev{
-  animation: buttonAni 300ms cubic-bezier(.48,.18,.44,.97) 1200ms forwards;
-  
-  &:before{
-    border-color: transparent #fff transparent transparent;
-    border-width: 8px 12px 8px 0;
-    right: 17px;
-  }
-  
-  &:after{
-    left: 14px;
-  }
-}
-
-.button__next{
-  animation: buttonAni 300ms cubic-bezier(.48,.18,.44,.97) 1400ms forwards;
-  
-  &:before{
-    border-color: transparent transparent transparent #fff;
-    border-width: 8px 0 8px 12px;
-    left: 17px;
-  }
-  
-  &:after{
-    right: 14px;
-  }
-}
-
-.hint{
-  bottom: 20px;
-  color: rgba(255,255,255,.5);
-  font-size: 16px;
-  left: 0;
-  position: absolute;
-  text-align: center;
-  width: 100%;
-}
-
-.recordplayer{
-  height: 180px;
-  left: 70px;
-  position: absolute;
-  transform: scale(.7);
-  transition: all 170ms ease-in;
-  top: 40px;
-  width: 180px;
-  
-  &.play{
-    transform: scale(1);
-  }
-}
-
-@keyframes discAni{
-  from{
-    transform: rotate(0deg);
-  }
-  to{
-    transform: rotate(360deg);
-  }
-}
-
-.recordplayer__disc{
-  animation: discAni 6s infinite linear forwards;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  box-sizing: border-box;
-  height: 180px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 180px;
-}
-
-.recordplayer__disc-stripe1{
-  height: 30px;
-  left: 39px;
-  overflow: hidden;
-  position: absolute;
-  top: 5px;
-  width: 100px;
-  
-  &:before{
-    border: 3px solid rgba(255,255,255,.5);
-    border-radius: 50%;
-    box-sizing: border-box;
-    content: "";
-    display: block;
-    height: 170px;
-    left: -35px;
-    position: absolute;
-    top: 0;
-    width: 170px;
-  }
-}
-
-.recordplayer__disc-stripe2{
-  bottom: 5px;
-  height: 30px;
-  left: 64px;
-  overflow: hidden;
-  position: absolute;
-  width: 50px;
-  
-  &:before{
-    border: 3px solid rgba(255,255,255,.5);
-    border-radius: 50%;
-    box-sizing: border-box;
-    content: "";
-    display: block;
-    height: 170px;
-    left: -60px;
-    position: absolute;
-    top: -140px;
-    width: 170px;
-  }
-}
-
-/*
- * EMBED STYLING
-*/
-@media (max-width: 800px){
-	html,
-	body{
-		height: 600px;
-		overflow: hidden;
-		width: 800px;
-	}
-}
-    </style>
-    
-    <script>
-      var wavesurfer = WaveSurfer.create({
-    barWidth: 1,
-    container: '#wavesurfer',
-    cursorWidth: 0,
-    dragSelection: true,
-    height: 500,
-    hideScrollbar: true,
-    interact: true,
-    normalize: true,
-    waveColor: 'rgba(255,255,255,.05)',
-    progressColor: 'rgba(255,255,255,.15)'
-});
-
-$('.player').on('click', '#play', function(){
-  if( $(this).hasClass('load') ){
-    $(this).removeClass('load');
-    wavesurfer.load('https://ia802709.us.archive.org/32/items/GlenMiller-MoonlightSerenade/8a3748ab5a59.mp3');
-  } else {
-    wavesurfer.playPause();
-  }
-});
-
-var m,
-    s;
-
-function getMinutes( convTime ){
-  convTime = Number(convTime);
-  m = Math.floor(convTime% 3600 / 60);
-  return ((m < 10 ? "0" : "") + m);
-}
-
-function getSeconds( convTime ){
-  convTime = Number(convTime);
-  s = Math.floor(convTime % 3600 % 60);
-  return ((s < 10 ? "0" : "") + s);
-}
-
-var totalTime,
-    timeJump,
-    currentTime,
-    currentTimeJump;
-
-wavesurfer.on('ready', function(){
-  totalTime = wavesurfer.getDuration();
-  timeJump = 300 / totalTime;
-  $('.wavesurfer__elem').addClass('show');
-  $('.button__loader').fadeOut();
-  $('.time__minutes').text( getMinutes( totalTime ) );
-  $('.time__seconds').text( getSeconds( totalTime ) );
-  $('.time, .progress').fadeIn();
-  
-  wavesurfer.play();
-});
-
-function progressJump(){
-  currentTime = wavesurfer.getCurrentTime();
-  currentTimeJump = currentTime * timeJump + 10;
-  $('.progress__button').css({ left: currentTimeJump+'px' });
-  $('.progress__indicator').css({ width: currentTimeJump+'px' });
-  
-  $('.time__minutes').text( getMinutes( currentTime ) );
-  $('.time__seconds').text( getSeconds( currentTime ) );
-}
-
-wavesurfer.on('audioprocess', function(){
-  progressJump();
-});
-
-wavesurfer.on('pause', function(){
-  $('.button__play-iconplay').fadeIn();
-  $('.button__play-iconpause').fadeOut();
-  $('.recordplayer').removeClass('play');
-  $('.recordplayer__disc').removeClass('animate');
-  $('.artist__image').removeClass('play');
-});
-
-wavesurfer.on('play', function(){
-  $('.button__play-iconplay').fadeOut();
-  $('.button__play-iconpause').fadeIn();
-  $('.recordplayer').addClass('play');
-  $('.recordplayer__disc').addClass('animate');
-  $('.artist__image').addClass('play');
-});
-
-wavesurfer.on('loading', function(event){
-  $('.button__loader').css({ height: event+'px' });
-});
-
-wavesurfer.on('seek', function(event){
-  progressJump();
-});
-    </script>
-  </head>
-  
-  <body>
-    <div class="phone">
-  <div class="player">
-    <div class="wavesurfer">
-      <div class="recordplayer">
-        <div class="recordplayer__disc">
-          <div class="recordplayer__disc-stripe1"></div>
-          <div class="recordplayer__disc-stripe2"></div>
-        </div>
-      </div>
-      <div class="artist__image">
-        <div class="artist__image-url"></div>
-      </div>
-
-      <div class="time">
-        <span class="time__minutes"></span>
-        <span>:</span>
-        <span class="time__seconds"></span>
-      </div>
-      <div class="progress">
-        <div class="progress__button"></div>
-        <div class="progress__indicator"></div>
-      </div>
-    </div>
-    
-    <div id="wavesurfer" class="wavesurfer__elem"></div>
-    
-    <div class="artist__name">
-      <p>Moonlight Serenade</p>
-      <h1>Glenn Miller</h1>
-      <div class="love">&#9825;</div>
-      <div class="share"></div>
-    </div>
-    
-    <div class="controls">
-      <button class="button__prev"></button>
-      <button id="play" class="button__play load">
-        <span class="button__play-iconplay"></span>
-        <span class="button__play-iconpause"></span>
-        <span class="button__loader"></span>
-      </button>
-      <button class="button__next"></button>
-    </div>
-  </div>
-</div>
-
-<div class="hint">Press play</div>
-  </body>
-</html>
+</body></html>
