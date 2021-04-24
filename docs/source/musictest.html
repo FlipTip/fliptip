@@ -1,0 +1,670 @@
+<html lang="en" class="wf-proximanova-n7-active wf-proximanova-n1-active wf-proximanova-n6-active wf-proximanova-n4-active wf-proximanova-n3-active wf-proximanova-n5-active wf-active"><head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+<link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+
+
+  <title>CodePen - #dailyui 009  Music Player</title>
+  <script src="https://use.typekit.net/tqi0rfb.js"></script>
+<style type="text/css">.tk-proxima-nova{font-family:"proxima-nova",sans-serif;}</style><style type="text/css">@font-face{font-family:tk-proxima-nova-n7;src:url(https://use.typekit.net/af/7d485b/00000000000000003b9ad1b1/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n7&v=3) format("woff2"),url(https://use.typekit.net/af/7d485b/00000000000000003b9ad1b1/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n7&v=3) format("woff"),url(https://use.typekit.net/af/7d485b/00000000000000003b9ad1b1/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n7&v=3) format("opentype");font-weight:700;font-style:normal;font-display:auto;}@font-face{font-family:tk-proxima-nova-n1;src:url(https://use.typekit.net/af/f6bc94/00000000000000003b9ad1bd/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n1&v=3) format("woff2"),url(https://use.typekit.net/af/f6bc94/00000000000000003b9ad1bd/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n1&v=3) format("woff"),url(https://use.typekit.net/af/f6bc94/00000000000000003b9ad1bd/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n1&v=3) format("opentype");font-weight:100;font-style:normal;font-display:auto;}@font-face{font-family:tk-proxima-nova-n6;src:url(https://use.typekit.net/af/04b81b/00000000000000003b9ad1bb/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n6&v=3) format("woff2"),url(https://use.typekit.net/af/04b81b/00000000000000003b9ad1bb/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n6&v=3) format("woff"),url(https://use.typekit.net/af/04b81b/00000000000000003b9ad1bb/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n6&v=3) format("opentype");font-weight:600;font-style:normal;font-display:auto;}@font-face{font-family:tk-proxima-nova-n4;src:url(https://use.typekit.net/af/c9cde8/00000000000000003b9ad1b9/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n4&v=3) format("woff2"),url(https://use.typekit.net/af/c9cde8/00000000000000003b9ad1b9/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n4&v=3) format("woff"),url(https://use.typekit.net/af/c9cde8/00000000000000003b9ad1b9/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n4&v=3) format("opentype");font-weight:400;font-style:normal;font-display:auto;}@font-face{font-family:tk-proxima-nova-n3;src:url(https://use.typekit.net/af/3333ef/00000000000000003b9ad1b5/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n3&v=3) format("woff2"),url(https://use.typekit.net/af/3333ef/00000000000000003b9ad1b5/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n3&v=3) format("woff"),url(https://use.typekit.net/af/3333ef/00000000000000003b9ad1b5/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n3&v=3) format("opentype");font-weight:300;font-style:normal;font-display:auto;}@font-face{font-family:tk-proxima-nova-n5;src:url(https://use.typekit.net/af/9faf92/00000000000000003b9ad1b7/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n5&v=3) format("woff2"),url(https://use.typekit.net/af/9faf92/00000000000000003b9ad1b7/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n5&v=3) format("woff"),url(https://use.typekit.net/af/9faf92/00000000000000003b9ad1b7/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n5&v=3) format("opentype");font-weight:500;font-style:normal;font-display:auto;}</style><script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+  
+<style>
+html {
+  height: 100%;
+}
+
+body {
+  background: #4f8ea5;
+  background: radial-gradient(ellipse at center, #4f8ea5 0%, #343f53 50%, #1c1b26 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#4f8ea5", endColorstr="#1c1b26",GradientType=1 );
+  font-family: "proxima-nova";
+}
+
+.clear:before, .time:before, .clear:after, .time:after {
+  content: "";
+  display: table;
+}
+.clear:after, .time:after {
+  clear: both;
+}
+
+@-webkit-keyframes opacityAni {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacityAni {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.phone {
+  -webkit-animation: opacityAni 400ms linear 1s forwards;
+          animation: opacityAni 400ms linear 1s forwards;
+  background: #1e1e28;
+  background: linear-gradient(to bottom, #1e1e28 0%, #1e2e47 34%, #31bdf7 88%, #e8fefe 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#1e1e28", endColorstr="#e8fefe",GradientType=0 );
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  height: 500px;
+  left: 50%;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  width: 320px;
+}
+
+.wavesurfer {
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 275px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  padding-top: 60px;
+  pointer-events: none;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.wavesurfer__elem {
+  height: 500px;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 170ms linear;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+.wavesurfer__elem.show {
+  opacity: 1;
+}
+
+.artist__image {
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.1), 0 0 0 10px rgba(255, 255, 255, 0.1), 0 0 5px 20px rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  height: 140px;
+  margin: 0 auto 34px auto;
+  position: relative;
+  transition: all 170ms ease-in;
+  width: 140px;
+  z-index: 2;
+}
+.artist__image.play {
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0), 0 0 0 10px rgba(255, 255, 255, 0), 0 0 5px 20px rgba(255, 255, 255, 0);
+}
+
+.artist__image-url {
+  background: url("https://archive.org/download/GlennMillerOrchestra-CompleteStudioRecordings/Glenn_Miller_Billboard.jpg") no-repeat left top;
+  background-size: cover;
+  border-radius: 50%;
+  height: 140px;
+  width: 140px;
+}
+
+.time {
+  color: rgba(255, 255, 255, 0.7);
+  display: none;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 0 auto;
+  pointer-events: none;
+  text-align: center;
+  width: 63px;
+}
+.time span {
+  display: inline-block;
+  float: left;
+  width: 3px;
+}
+.time .time__minutes,
+.time .time__seconds {
+  width: 30px;
+}
+.time .time__minutes {
+  text-align: right;
+}
+.time .time__seconds {
+  text-align: left;
+}
+
+.progress {
+  background: rgba(255, 255, 255, 0.2);
+  bottom: 5px;
+  display: none;
+  height: 5px;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.progress__button {
+  background-color: #fff;
+  border-radius: 50%;
+  height: 15px;
+  left: 10px;
+  position: absolute;
+  top: -5px;
+  transform: translateX(-50%);
+  width: 15px;
+  z-index: 1;
+}
+
+.progress__indicator {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#00ffffff", endColorstr="#99ffffff",GradientType=1 );
+  height: 3px;
+  left: 0;
+  position: absolute;
+  top: 1px;
+  width: 10px;
+  z-index: 0;
+}
+
+@-webkit-keyframes artistNameAni {
+  0% {
+    transform: translateY(40px) scale(0.8);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes artistNameAni {
+  0% {
+    transform: translateY(40px) scale(0.8);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+.artist__name {
+  -webkit-animation: artistNameAni 400ms linear 1000ms forwards;
+          animation: artistNameAni 400ms linear 1000ms forwards;
+  margin-bottom: 30px;
+  position: relative;
+  text-align: center;
+  transform: translateY(40px) scale(0.8);
+}
+.artist__name h1 {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  font-weight: 100;
+  margin: 0;
+  text-transform: uppercase;
+}
+.artist__name p {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0 0 5px 0;
+}
+
+.love {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+  left: 30px;
+  position: absolute;
+  top: 10px;
+}
+
+.share {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  height: 5px;
+  position: absolute;
+  right: 35px;
+  top: 20px;
+  width: 5px;
+}
+.share:before, .share:after {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  content: "";
+  height: 5px;
+  position: absolute;
+  top: -1px;
+  width: 5px;
+}
+.share:before {
+  left: -10px;
+}
+.share:after {
+  right: -10px;
+}
+
+.controls {
+  text-align: center;
+}
+
+@-webkit-keyframes buttonAni {
+  0% {
+    transform: translateY(120px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonAni {
+  0% {
+    transform: translateY(120px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.button__play {
+  -webkit-animation: buttonAni 300ms cubic-bezier(0.48, 0.18, 0.44, 0.97) 1300ms forwards;
+          animation: buttonAni 300ms cubic-bezier(0.48, 0.18, 0.44, 0.97) 1300ms forwards;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 80px;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  transform: translateY(120px);
+  width: 80px;
+}
+
+.button__play-iconplay {
+  border-color: transparent transparent transparent #fff;
+  border-style: solid;
+  border-width: 13px 0 13px 20px;
+  height: 0;
+  left: 31px;
+  position: absolute;
+  top: 25px;
+  width: 0;
+}
+
+.button__play-iconpause {
+  display: none;
+  height: 24px;
+  left: 28px;
+  position: absolute;
+  top: 25px;
+  width: 19px;
+}
+.button__play-iconpause:before, .button__play-iconpause:after {
+  background: #fff;
+  content: "";
+  display: block;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  width: 6px;
+}
+.button__play-iconpause:before {
+  left: 0;
+}
+.button__play-iconpause:after {
+  left: 13px;
+}
+
+.button__loader {
+  background: rgba(255, 255, 255, 0.5);
+  bottom: 0;
+  height: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.button__prev,
+.button__next {
+  background: none;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  height: 50px;
+  margin: 0 8px;
+  position: relative;
+  top: 15px;
+  transform: translateY(120px);
+  vertical-align: top;
+  width: 50px;
+}
+.button__prev:before,
+.button__next:before {
+  border-style: solid;
+  content: "";
+  height: 0;
+  position: absolute;
+  top: 16px;
+  width: 0;
+}
+.button__prev:after,
+.button__next:after {
+  background: #fff;
+  border-radius: 1px;
+  content: "";
+  height: 14px;
+  position: absolute;
+  top: 17px;
+  width: 2px;
+}
+
+.button__prev {
+  -webkit-animation: buttonAni 300ms cubic-bezier(0.48, 0.18, 0.44, 0.97) 1200ms forwards;
+          animation: buttonAni 300ms cubic-bezier(0.48, 0.18, 0.44, 0.97) 1200ms forwards;
+}
+.button__prev:before {
+  border-color: transparent #fff transparent transparent;
+  border-width: 8px 12px 8px 0;
+  right: 17px;
+}
+.button__prev:after {
+  left: 14px;
+}
+
+.button__next {
+  -webkit-animation: buttonAni 300ms cubic-bezier(0.48, 0.18, 0.44, 0.97) 1400ms forwards;
+          animation: buttonAni 300ms cubic-bezier(0.48, 0.18, 0.44, 0.97) 1400ms forwards;
+}
+.button__next:before {
+  border-color: transparent transparent transparent #fff;
+  border-width: 8px 0 8px 12px;
+  left: 17px;
+}
+.button__next:after {
+  right: 14px;
+}
+
+.hint {
+  bottom: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.recordplayer {
+  height: 180px;
+  left: 70px;
+  position: absolute;
+  transform: scale(0.7);
+  transition: all 170ms ease-in;
+  top: 40px;
+  width: 180px;
+}
+.recordplayer.play {
+  transform: scale(1);
+}
+
+@-webkit-keyframes discAni {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes discAni {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.recordplayer__disc {
+  -webkit-animation: discAni 6s infinite linear forwards;
+          animation: discAni 6s infinite linear forwards;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  height: 180px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 180px;
+}
+
+.recordplayer__disc-stripe1 {
+  height: 30px;
+  left: 39px;
+  overflow: hidden;
+  position: absolute;
+  top: 5px;
+  width: 100px;
+}
+.recordplayer__disc-stripe1:before {
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  box-sizing: border-box;
+  content: "";
+  display: block;
+  height: 170px;
+  left: -35px;
+  position: absolute;
+  top: 0;
+  width: 170px;
+}
+
+.recordplayer__disc-stripe2 {
+  bottom: 5px;
+  height: 30px;
+  left: 64px;
+  overflow: hidden;
+  position: absolute;
+  width: 50px;
+}
+.recordplayer__disc-stripe2:before {
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  box-sizing: border-box;
+  content: "";
+  display: block;
+  height: 170px;
+  left: -60px;
+  position: absolute;
+  top: -140px;
+  width: 170px;
+}
+
+/*
+ * EMBED STYLING
+*/
+@media (max-width: 800px) {
+  html,
+body {
+    height: 600px;
+    overflow: hidden;
+    width: 800px;
+  }
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script><style type="text/css">@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/7d485b/00000000000000003b9ad1b1/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n7&v=3) format("woff2"),url(https://use.typekit.net/af/7d485b/00000000000000003b9ad1b1/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n7&v=3) format("woff"),url(https://use.typekit.net/af/7d485b/00000000000000003b9ad1b1/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n7&v=3) format("opentype");font-weight:700;font-style:normal;font-display:auto;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/f6bc94/00000000000000003b9ad1bd/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n1&v=3) format("woff2"),url(https://use.typekit.net/af/f6bc94/00000000000000003b9ad1bd/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n1&v=3) format("woff"),url(https://use.typekit.net/af/f6bc94/00000000000000003b9ad1bd/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n1&v=3) format("opentype");font-weight:100;font-style:normal;font-display:auto;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/04b81b/00000000000000003b9ad1bb/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n6&v=3) format("woff2"),url(https://use.typekit.net/af/04b81b/00000000000000003b9ad1bb/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n6&v=3) format("woff"),url(https://use.typekit.net/af/04b81b/00000000000000003b9ad1bb/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n6&v=3) format("opentype");font-weight:600;font-style:normal;font-display:auto;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/c9cde8/00000000000000003b9ad1b9/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n4&v=3) format("woff2"),url(https://use.typekit.net/af/c9cde8/00000000000000003b9ad1b9/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n4&v=3) format("woff"),url(https://use.typekit.net/af/c9cde8/00000000000000003b9ad1b9/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n4&v=3) format("opentype");font-weight:400;font-style:normal;font-display:auto;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/3333ef/00000000000000003b9ad1b5/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n3&v=3) format("woff2"),url(https://use.typekit.net/af/3333ef/00000000000000003b9ad1b5/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n3&v=3) format("woff"),url(https://use.typekit.net/af/3333ef/00000000000000003b9ad1b5/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n3&v=3) format("opentype");font-weight:300;font-style:normal;font-display:auto;}@font-face{font-family:proxima-nova;src:url(https://use.typekit.net/af/9faf92/00000000000000003b9ad1b7/27/l?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n5&v=3) format("woff2"),url(https://use.typekit.net/af/9faf92/00000000000000003b9ad1b7/27/d?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n5&v=3) format("woff"),url(https://use.typekit.net/af/9faf92/00000000000000003b9ad1b7/27/a?primer=c67f8e78555567ca6a1ce6761c1c4c4d63cbbed8f0fdc6714236ab70113a7a79&fvd=n5&v=3) format("opentype");font-weight:500;font-style:normal;font-display:auto;}</style>
+
+
+</head>
+
+<body translate="no">
+  <div class="phone">
+  <div class="player">
+    <div class="wavesurfer">
+      <div class="recordplayer">
+        <div class="recordplayer__disc">
+          <div class="recordplayer__disc-stripe1"></div>
+          <div class="recordplayer__disc-stripe2"></div>
+        </div>
+      </div>
+      <div class="artist__image">
+        <div class="artist__image-url"></div>
+      </div>
+
+      <div class="time">
+        <span class="time__minutes"></span>
+        <span>:</span>
+        <span class="time__seconds"></span>
+      </div>
+      <div class="progress">
+        <div class="progress__button"></div>
+        <div class="progress__indicator"></div>
+      </div>
+    </div>
+    
+    <div id="wavesurfer" class="wavesurfer__elem"><wave style="display: block; position: relative; user-select: none; height: 500px; width: 100%; overflow: hidden;"><canvas style="position: absolute; z-index: 1; left: 0px; top: 0px; bottom: 0px;"></canvas><wave style="position: absolute; z-index: 2; left: 0px; top: 0px; bottom: 0px; overflow: hidden; width: 0px; display: none; box-sizing: border-box; border-right: 0px solid rgb(51, 51, 51);"><canvas></canvas></wave></wave></div>
+    
+    <div class="artist__name">
+      <p>Moonlight Serenade</p>
+      <h1>Glenn Miller</h1>
+      <div class="love">♡</div>
+      <div class="share"></div>
+    </div>
+    
+    <div class="controls">
+      <button class="button__prev"></button>
+      <button id="play" class="button__play load">
+        <span class="button__play-iconplay"></span>
+        <span class="button__play-iconpause"></span>
+        <span class="button__loader"></span>
+      </button>
+      <button class="button__next"></button>
+    </div>
+  </div>
+</div>
+
+<div class="hint">Press play</div>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.1.5/wavesurfer.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+      <script id="rendered-js">
+var wavesurfer = WaveSurfer.create({
+  barWidth: 1,
+  container: '#wavesurfer',
+  cursorWidth: 0,
+  dragSelection: true,
+  height: 500,
+  hideScrollbar: true,
+  interact: true,
+  normalize: true,
+  waveColor: 'rgba(255,255,255,.05)',
+  progressColor: 'rgba(255,255,255,.15)' });
+
+
+$('.player').on('click', '#play', function () {
+  if ($(this).hasClass('load')) {
+    $(this).removeClass('load');
+    wavesurfer.load('https://ia802709.us.archive.org/32/items/GlenMiller-MoonlightSerenade/8a3748ab5a59.mp3');
+  } else {
+    wavesurfer.playPause();
+  }
+});
+
+var m,
+s;
+
+function getMinutes(convTime) {
+  convTime = Number(convTime);
+  m = Math.floor(convTime % 3600 / 60);
+  return (m < 10 ? "0" : "") + m;
+}
+
+function getSeconds(convTime) {
+  convTime = Number(convTime);
+  s = Math.floor(convTime % 3600 % 60);
+  return (s < 10 ? "0" : "") + s;
+}
+
+var totalTime,
+timeJump,
+currentTime,
+currentTimeJump;
+
+wavesurfer.on('ready', function () {
+  totalTime = wavesurfer.getDuration();
+  timeJump = 300 / totalTime;
+  $('.wavesurfer__elem').addClass('show');
+  $('.button__loader').fadeOut();
+  $('.time__minutes').text(getMinutes(totalTime));
+  $('.time__seconds').text(getSeconds(totalTime));
+  $('.time, .progress').fadeIn();
+
+  wavesurfer.play();
+});
+
+function progressJump() {
+  currentTime = wavesurfer.getCurrentTime();
+  currentTimeJump = currentTime * timeJump + 10;
+  $('.progress__button').css({ left: currentTimeJump + 'px' });
+  $('.progress__indicator').css({ width: currentTimeJump + 'px' });
+
+  $('.time__minutes').text(getMinutes(currentTime));
+  $('.time__seconds').text(getSeconds(currentTime));
+}
+
+wavesurfer.on('audioprocess', function () {
+  progressJump();
+});
+
+wavesurfer.on('pause', function () {
+  $('.button__play-iconplay').fadeIn();
+  $('.button__play-iconpause').fadeOut();
+  $('.recordplayer').removeClass('play');
+  $('.recordplayer__disc').removeClass('animate');
+  $('.artist__image').removeClass('play');
+});
+
+wavesurfer.on('play', function () {
+  $('.button__play-iconplay').fadeOut();
+  $('.button__play-iconpause').fadeIn();
+  $('.recordplayer').addClass('play');
+  $('.recordplayer__disc').addClass('animate');
+  $('.artist__image').addClass('play');
+});
+
+wavesurfer.on('loading', function (event) {
+  $('.button__loader').css({ height: event + 'px' });
+});
+
+wavesurfer.on('seek', function (event) {
+  progressJump();
+});
+//# sourceURL=pen.js
+    </script>
+
+  
+
+
+
+
+ 
+</body></html>
